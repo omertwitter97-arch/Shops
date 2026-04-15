@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Lumière Fashion — Trendy affordable women's fashion in Egypt. Shop dresses, tops, sets & more. Prices from 149 EGP. Cash on delivery.">
+<title>Lumière Fashion | أزياء لوميير</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===================== RESET & BASE ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0d0d0d;
+  --white: #ffffff;
+  --off: #f8f7f5;
+  --gold: #c8a96e;
+  --gold2: #a8863e;
+  --gray: #6b6b6b;
+  --lgray: #d4d4d4;
+  --border: #ebebeb;
+  --nav-h: 68px;
+  --radius: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.09);
+  --shadow2: 0 8px 40px rgba(0,0,0,0.14);
+  --ease: cubic-bezier(0.4,0,0.2,1);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; line-height: 1.6; }
+img { max-width: 100%; display: block; }
+button, a { cursor: pointer; font-family: inherit; }
+a { text-decoration: none; color: inherit; }
+input, select, textarea { font-family: inherit; outline: none; }
+ul { list-style: none; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--off); }
+::-webkit-scrollbar-thumb { background: var(--lgray); border-radius: 3px; }
+
+/* ===================== NAVBAR ===================== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: var(--nav-h); background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px); border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  display: flex; align-items: center;
+}
+.navbar.scrolled { border-bottom-color: var(--border); box-shadow: 0 2px 20px rgba(0,0,0,0.07); }
+.nav-inner { max-width: 1300px; width: 100%; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.logo { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
+.logo svg { width: 34px; height: 34px; }
+.logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+.logo-text span { color: var(--gold); }
+.nav-search { flex: 1; max-width: 380px; position: relative; }
+.nav-search input {
+  width: 100%; padding: 9px 16px 9px 40px;
+  border: 1.5px solid var(--border); border-radius: 50px;
+  font-size: 0.875rem; background: var(--off);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.nav-search input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,169,110,0.15); background: #fff; }
+.nav-search .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--gray); pointer-events: none; }
+.nav-links { display: flex; align-items: center; gap: 4px; }
+.nav-links a { padding: 7px 12px; font-size: 0.85rem; font-weight: 500; color: var(--gray); border-radius: 6px; transition: color 0.2s, background 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--black); background: var(--off); }
+.nav-actions { display: flex; align-items: center; gap: 6px; }
+.nav-btn { width: 40px; height: 40px; border: none; background: none; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.2s; position: relative; }
+.nav-btn:hover { background: var(--off); }
+.cart-badge {
+  position: absolute; top: 2px; right: 2px; width: 17px; height: 17px;
+  background: var(--gold); color: #fff; font-size: 0.65rem; font-weight: 700;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  display: none;
+}
+.hamburger { display: none; flex-direction: column; gap: 5px; border: none; background: none; padding: 6px; cursor: pointer; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--black); border-radius: 2px; transition: all 0.3s; }
+.mobile-menu {
+  display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+  background: #fff; padding: 16px 20px 24px; z-index: 999;
+  border-bottom: 1px solid var(--border); box-shadow: var(--shadow);
+  flex-direction: column; gap: 4px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { padding: 12px; font-weight: 500; color: var(--gray); border-radius: 8px; transition: background 0.2s, color 0.2s; }
+.mobile-menu a:hover { background: var(--off); color: var(--black); }
+.mobile-search { margin-bottom: 8px; position: relative; }
+.mobile-search input { width: 100%; padding: 10px 16px 10px 40px; border: 1.5px solid var(--border); border-radius: 50px; font-size: 0.9rem; background: var(--off); }
+.mobile-search .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--gray); }
+
+/* ===================== HERO ===================== */
+.hero {
+  margin-top: var(--nav-h); min-height: 90vh; display: flex; align-items: center;
+  background: var(--black); position: relative; overflow: hidden;
+}
+.hero-img {
+  position: absolute; right: 0; top: 0; width: 52%; height: 100%; overflow: hidden;
+}
+.hero-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+.hero-img::before {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to right, var(--black) 10%, transparent 70%);
+}
+.hero-content { position: relative; z-index: 2; padding: 60px 20px 60px 8%; max-width: 620px; animation: fadeUp 0.9s var(--ease) both; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+.hero-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+.hero-tag::before { content: ''; width: 28px; height: 1px; background: var(--gold); }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 5vw, 3.6rem); color: #fff; line-height: 1.15; margin-bottom: 18px; font-style: italic; }
+.hero h1 strong { color: var(--gold); font-style: normal; }
+.hero-desc { color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 36px; max-width: 440px; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 13px 28px; font-size: 0.875rem; font-weight: 600; border-radius: var(--radius); border: 2px solid transparent; transition: all 0.25s var(--ease); cursor: pointer; white-space: nowrap; letter-spacing: 0.02em; }
+.btn-gold { background: var(--gold); color: #fff; border-color: var(--gold); }
+.btn-gold:hover { background: var(--gold2); border-color: var(--gold2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,169,110,0.35); }
+.btn-outline-white { background: transparent; color: #fff; border-color: rgba(255,255,255,0.4); }
+.btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+.btn-dark { background: var(--black); color: #fff; border-color: var(--black); }
+.btn-dark:hover { background: #333; transform: translateY(-2px); box-shadow: var(--shadow); }
+.btn-outline { background: transparent; color: var(--black); border-color: var(--black); }
+.btn-outline:hover { background: var(--black); color: #fff; }
+.btn-sm { padding: 9px 18px; font-size: 0.8rem; }
+.btn-full { width: 100%; }
+.hero-stats { display: flex; gap: 36px; margin-top: 44px; }
+.hero-stat .num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--gold); }
+.hero-stat .lbl { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+/* ===================== MARQUEE ===================== */
+.marquee-bar { background: var(--black); padding: 12px 0; overflow: hidden; }
+.marquee-track { display: flex; gap: 56px; width: max-content; animation: marquee 25s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-item { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.6); white-space: nowrap; display: flex; align-items: center; gap: 10px; }
+.marquee-item em { color: var(--gold); font-style: normal; }
+
+/* ===================== SECTIONS ===================== */
+.section { padding: 80px 0; }
+.section-sm { padding: 56px 0; }
+.container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
+.section-head { text-align: center; margin-bottom: 48px; }
+.section-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.3rem); color: var(--black); margin-bottom: 12px; }
+.section-sub { color: var(--gray); max-width: 480px; margin: 0 auto; font-size: 0.95rem; }
+.divider { height: 1px; background: var(--border); }
+
+/* ===================== CATEGORIES ===================== */
+.cats-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.cat-card { position: relative; aspect-ratio: 3/4; border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform 0.3s var(--ease), box-shadow 0.3s; }
+.cat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow2); }
+.cat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+.cat-card:hover img { transform: scale(1.07); }
+.cat-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%); }
+.cat-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 16px; color: #fff; }
+.cat-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 2px; }
+.cat-count { font-size: 0.72rem; color: rgba(255,255,255,0.65); }
+
+/* ===================== FILTERS & SEARCH ===================== */
+.shop-controls { background: var(--off); padding: 20px 0; border-bottom: 1px solid var(--border); position: sticky; top: var(--nav-h); z-index: 100; }
+.controls-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.filter-tabs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.filter-tab { padding: 8px 18px; border-radius: 50px; font-size: 0.83rem; font-weight: 500; border: 1.5px solid var(--border); background: #fff; color: var(--gray); cursor: pointer; transition: all 0.2s; }
+.filter-tab:hover { border-color: var(--gold); color: var(--gold); }
+.filter-tab.active { background: var(--black); border-color: var(--black); color: #fff; }
+.sort-select { padding: 9px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.83rem; background: #fff; color: var(--black); cursor: pointer; }
+.sort-select:focus { border-color: var(--gold); }
+.results-count { font-size: 0.85rem; color: var(--gray); }
+
+/* ===================== PRODUCT GRID ===================== */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 24px; }
+.product-card { background: #fff; border-radius: var(--radius); overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; border: 1px solid var(--border); cursor: pointer; }
+.product-card:hover { box-shadow: var(--shadow2); transform: translateY(-4px); }
+.pc-img-wrap { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--off); }
+.pc-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s var(--ease); }
+.product-card:hover .pc-img-wrap img { transform: scale(1.06); }
+.pc-badges { position: absolute; top: 12px; left: 12px; display: flex; flex-direction: column; gap: 5px; }
+.badge { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 50px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; }
+.badge-sale { background: var(--black); color: #fff; }
+.badge-new { background: var(--gold); color: #fff; }
+.badge-hot { background: #e63946; color: #fff; }
+.pc-actions { position: absolute; bottom: 12px; right: 12px; display: flex; flex-direction: column; gap: 8px; opacity: 0; transform: translateX(10px); transition: opacity 0.25s, transform 0.25s; }
+.product-card:hover .pc-actions { opacity: 1; transform: translateX(0); }
+.pc-action-btn { width: 36px; height: 36px; background: #fff; border-radius: 50%; border: none; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.12); transition: background 0.2s, color 0.2s; color: var(--black); }
+.pc-action-btn:hover { background: var(--black); color: #fff; }
+.pc-info { padding: 14px 16px 16px; }
+.pc-cat { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 5px; }
+.pc-name { font-family: 'Playfair Display', serif; font-size: 0.98rem; font-weight: 600; margin-bottom: 8px; line-height: 1.35; color: var(--black); }
+.pc-price-row { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+.pc-price { font-size: 1rem; font-weight: 700; color: var(--black); }
+.pc-orig { font-size: 0.82rem; color: var(--lgray); text-decoration: line-through; }
+.pc-disc { font-size: 0.68rem; font-weight: 700; color: #e63946; background: rgba(230,57,70,0.1); padding: 2px 6px; border-radius: 4px; }
+.pc-add-btn { width: 100%; padding: 10px; background: var(--off); border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.83rem; font-weight: 600; color: var(--black); transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 7px; }
+.pc-add-btn:hover { background: var(--black); border-color: var(--black); color: #fff; }
+.no-results { grid-column: 1/-1; text-align: center; padding: 80px 20px; }
+.no-results h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 8px; }
+.no-results p { color: var(--gray); }
+
+/* ===================== CART DRAWER ===================== */
+.cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.cart-overlay.open { opacity: 1; pointer-events: all; }
+.cart-drawer {
+  position: fixed; top: 0; right: 0; width: 400px; max-width: 95vw;
+  height: 100%; background: #fff; z-index: 2001; display: flex; flex-direction: column;
+  transform: translateX(100%); transition: transform 0.35s var(--ease);
+  box-shadow: -8px 0 40px rgba(0,0,0,0.12);
+}
+.cart-drawer.open { transform: translateX(0); }
+.cart-head { padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.cart-head h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+.close-btn { width: 34px; height: 34px; border: none; background: var(--off); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; color: var(--gray); transition: background 0.2s, color 0.2s; }
+.close-btn:hover { background: var(--black); color: #fff; }
+.cart-body { flex: 1; overflow-y: auto; padding: 16px; }
+.cart-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 14px; text-align: center; padding: 40px; }
+.cart-empty-icon { font-size: 3.5rem; }
+.cart-empty h4 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+.cart-empty p { color: var(--gray); font-size: 0.9rem; }
+.cart-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border); animation: slideIn 0.3s var(--ease); }
+@keyframes slideIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
+.ci-img { width: 82px; height: 100px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: var(--off); }
+.ci-img img { width: 100%; height: 100%; object-fit: cover; }
+.ci-info { flex: 1; min-width: 0; }
+.ci-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ci-size { font-size: 0.76rem; color: var(--gray); margin-bottom: 8px; }
+.ci-price { font-weight: 700; font-size: 0.9rem; color: var(--black); }
+.qty-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.qty-btn { width: 26px; height: 26px; border: 1.5px solid var(--border); border-radius: 6px; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.2s; }
+.qty-btn:hover { border-color: var(--black); background: var(--black); color: #fff; }
+.qty-val { font-weight: 600; font-size: 0.9rem; min-width: 22px; text-align: center; }
+.ci-remove { background: none; border: none; color: var(--lgray); font-size: 0.76rem; margin-top: 4px; display: block; transition: color 0.2s; }
+.ci-remove:hover { color: #e63946; }
+.cart-foot { padding: 18px 24px; border-top: 1px solid var(--border); background: var(--off); }
+.cart-total-row { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 6px; color: var(--gray); }
+.cart-grand { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; padding-top: 12px; border-top: 1px solid var(--border); }
+.wa-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 14px; background: #25D366; color: #fff; border: none; border-radius: var(--radius); font-size: 0.9rem; font-weight: 700; transition: all 0.25s; margin-bottom: 10px; letter-spacing: 0.02em; }
+.wa-btn:hover { background: #128C7E; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,211,102,0.3); }
+.checkout-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 13px; background: var(--black); color: #fff; border: 2px solid var(--black); border-radius: var(--radius); font-size: 0.875rem; font-weight: 600; transition: all 0.25s; }
+.checkout-btn:hover { background: #333; }
+
+/* ===================== GUARANTEES ===================== */
+.guarantees { background: var(--off); padding: 28px 0; }
+.guar-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.guar-item { display: flex; align-items: center; gap: 14px; }
+.guar-icon { width: 46px; height: 46px; background: var(--black); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; }
+.guar-title { font-weight: 600; font-size: 0.875rem; margin-bottom: 2px; }
+.guar-sub { font-size: 0.76rem; color: var(--gray); }
+
+/* ===================== TESTIMONIALS ===================== */
+.test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.test-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; transition: box-shadow 0.3s, transform 0.3s; }
+.test-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.test-stars { color: var(--gold); font-size: 1rem; margin-bottom: 12px; letter-spacing: 1px; }
+.test-text { color: #444; font-size: 0.9rem; line-height: 1.8; margin-bottom: 20px; font-style: italic; }
+.test-author { display: flex; align-items: center; gap: 12px; }
+.test-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--off); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+.test-name { font-weight: 600; font-size: 0.875rem; }
+.test-loc { font-size: 0.76rem; color: var(--gray); }
+
+/* ===================== CHECKOUT MODAL ===================== */
+.modal-ov { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 3000; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 20px; }
+.modal-ov.open { opacity: 1; pointer-events: all; }
+.modal { background: #fff; border-radius: 16px; width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; transform: scale(0.95); transition: transform 0.3s var(--ease); }
+.modal-ov.open .modal { transform: scale(1); }
+.modal-head { padding: 24px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: #fff; border-radius: 16px 16px 0 0; }
+.modal-head h2 { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
+.modal-body { padding: 24px 28px; }
+.modal-section { margin-bottom: 24px; }
+.modal-section h4 { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { margin-bottom: 14px; }
+.form-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--black); margin-bottom: 6px; }
+.form-input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 0.9rem; transition: border-color 0.2s, box-shadow 0.2s; background: var(--off); }
+.form-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,169,110,0.15); background: #fff; }
+.order-item-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.875rem; border-bottom: 1px solid var(--border); }
+.order-total-row { display: flex; justify-content: space-between; font-weight: 700; font-size: 1rem; padding-top: 14px; margin-top: 4px; }
+.cod-info { display: flex; align-items: center; gap: 12px; background: rgba(200,169,110,0.08); border: 1px solid rgba(200,169,110,0.25); border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
+.cod-icon { font-size: 1.5rem; }
+.cod-text strong { display: block; font-size: 0.9rem; margin-bottom: 2px; }
+.cod-text span { font-size: 0.78rem; color: var(--gray); }
+.success-modal { text-align: center; padding: 44px 28px; }
+.success-icon { font-size: 4rem; margin-bottom: 16px; }
+.success-modal h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 10px; }
+.success-modal p { color: var(--gray); margin-bottom: 24px; font-size: 0.9rem; line-height: 1.7; }
+.order-id { color: var(--gold); font-weight: 700; font-size: 1.05rem; margin-bottom: 22px; }
+
+/* ===================== TOAST ===================== */
+.toast-container { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 9999; pointer-events: none; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.toast { background: var(--black); color: #fff; padding: 12px 22px; border-radius: 50px; font-size: 0.875rem; font-weight: 500; white-space: nowrap; opacity: 0; transform: translateY(12px); animation: toastAnim 3s var(--ease) forwards; }
+@keyframes toastAnim {
+  0% { opacity: 0; transform: translateY(12px); }
+  12% { opacity: 1; transform: translateY(0); }
+  80% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+
+/* ===================== FOOTER ===================== */
+footer { background: var(--black); color: #fff; padding: 60px 0 28px; }
+.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
+.footer-brand .logo-text { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; margin-bottom: 12px; display: block; }
+.footer-tagline { color: rgba(255,255,255,0.48); font-size: 0.875rem; line-height: 1.75; margin-bottom: 20px; }
+.footer-socials { display: flex; gap: 10px; }
+.social-link { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.55); font-size: 0.85rem; transition: all 0.2s; }
+.social-link:hover { border-color: var(--gold); color: var(--gold); background: rgba(200,169,110,0.1); }
+.footer-col h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+.footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a { color: rgba(255,255,255,0.52); font-size: 0.875rem; transition: color 0.2s, padding-left 0.2s; display: block; }
+.footer-col ul li a:hover { color: #fff; padding-left: 4px; }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+.footer-bottom p { color: rgba(255,255,255,0.36); font-size: 0.78rem; }
+.payment-methods { display: flex; gap: 8px; }
+.payment-method { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 5px; padding: 4px 10px; font-size: 0.72rem; color: rgba(255,255,255,0.6); }
+
+/* ===================== WA FLOAT ===================== */
+.wa-float { position: fixed; bottom: 28px; right: 28px; width: 54px; height: 54px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 999; transition: all 0.25s; color: #fff; }
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+
+/* ===================== STATS BAR ===================== */
+.stats-bar { background: var(--black); padding: 56px 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; text-align: center; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: var(--gold); margin-bottom: 4px; }
+.stat-lbl { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+
+/* ===================== INSTAGRAM GRID ===================== */
+.ig-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 4px; border-radius: var(--radius); overflow: hidden; }
+.ig-item { aspect-ratio: 1; position: relative; overflow: hidden; cursor: pointer; }
+.ig-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+.ig-item:hover img { transform: scale(1.1); }
+.ig-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.25s; }
+.ig-item:hover .ig-overlay { opacity: 1; }
+
+/* ===================== NEWSLETTER ===================== */
+.newsletter { background: var(--black); padding: 72px 0; text-align: center; }
+.newsletter h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem,3vw,2.2rem); color: #fff; margin-bottom: 10px; }
+.newsletter p { color: rgba(255,255,255,0.55); margin-bottom: 30px; }
+.nl-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto; }
+.nl-input { flex: 1; padding: 13px 18px; border: 1.5px solid rgba(255,255,255,0.18); border-radius: var(--radius); background: rgba(255,255,255,0.06); color: #fff; font-size: 0.9rem; transition: border-color 0.2s; }
+.nl-input::placeholder { color: rgba(255,255,255,0.35); }
+.nl-input:focus { border-color: var(--gold); outline: none; }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 1024px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .cats-grid { grid-template-columns: repeat(3, 1fr); }
+  .guar-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 768px) {
+  .nav-search, .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .hero-img { width: 100%; opacity: 0.25; }
+  .hero-content { padding: 50px 20px; max-width: 100%; }
+  .hero-stats { gap: 24px; }
+  .hero-stat .num { font-size: 1.4rem; }
+  .cats-grid { grid-template-columns: repeat(2, 1fr); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .test-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .ig-grid { grid-template-columns: repeat(3,1fr); }
+  .stats-grid { grid-template-columns: repeat(2,1fr); }
+  .form-row { grid-template-columns: 1fr; }
+  .filter-tabs { gap: 6px; }
+  .filter-tab { padding: 7px 14px; font-size: 0.78rem; }
+  .controls-inner { gap: 12px; }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.9rem; }
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .pc-info { padding: 10px 12px 12px; }
+  .pc-name { font-size: 0.88rem; }
+  .cart-drawer { width: 100%; }
+  .hero-btns { gap: 10px; }
+  .btn { padding: 11px 20px; font-size: 0.82rem; }
+  .nl-form { flex-direction: column; }
+}
+
+/* ===================== UTILITIES ===================== */
+.text-gold { color: var(--gold); }
+.bg-off { background: var(--off); }
+.mt-40 { margin-top: 40px; }
+.text-center { text-align: center; }
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- =================== NAVBAR =================== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <div class="logo">
+      <svg viewBox="0 0 34 34" fill="none">
+        <circle cx="17" cy="17" r="16" stroke="#c8a96e" stroke-width="1.5"/>
+        <path d="M17 7 L21 14 L17 12 L13 14 Z" fill="#c8a96e"/>
+        <path d="M17 12 L21 14 L17 26 L13 14 Z" fill="#1a1a1a" opacity=".85"/>
+        <path d="M17 12 L13 14 L17 26 Z" fill="#c8a96e" opacity=".7"/>
+      </svg>
+      <span class="logo-text">Lumi<span>ère</span></span>
+    </div>
+    <div class="nav-search">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="main-search" placeholder="Search products..." oninput="handleSearchInput(this.value)">
+    </div>
+    <ul class="nav-links">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+    <button class="nav-btn" onclick="openAuthModal()" title="Account">
+     👤
+      </button>
+      <button class="nav-btn" onclick="openCart()" title="Shopping cart" id="cart-nav-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-search">
+    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" placeholder="Search products..." oninput="handleSearchInput(this.value)">
+  </div>
+  <a href="#shop" onclick="closeMobileMenu()">Shop All</a>
+  <a href="#categories" onclick="closeMobileMenu()">Categories</a>
+  <a href="#about" onclick="closeMobileMenu()">About Us</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+</div>
+
+<!-- =================== HERO =================== -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80" alt="Fashion hero">
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">New Collection 2024</div>
+    <h1>Where Style<br>Meets <strong>Elegance</strong></h1>
+    <p class="hero-desc">Trendy, affordable fashion crafted for the modern Egyptian woman. Over 30 styles starting from 149 EGP.</p>
+    <div class="hero-btns">
+      <a href="#shop" class="btn btn-gold">Shop Now →</a>
+      <a href="#categories" class="btn btn-outline-white">Browse Categories</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">30+</div><div class="lbl">Styles</div></div>
+      <div class="hero-stat"><div class="num">149</div><div class="lbl">From EGP</div></div>
+      <div class="hero-stat"><div class="num">5K+</div><div class="lbl">Customers</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span class="marquee-item"><em>✦</em> Free Delivery Over 500 EGP</span>
+    <span class="marquee-item"><em>✦</em> New Arrivals Every Week</span>
+    <span class="marquee-item"><em>✦</em> Cash on Delivery Available</span>
+    <span class="marquee-item"><em>✦</em> Easy 14-Day Returns</span>
+    <span class="marquee-item"><em>✦</em> Hijab-Friendly Collections</span>
+    <span class="marquee-item"><em>✦</em> Order via WhatsApp</span>
+    <span class="marquee-item"><em>✦</em> Proudly Egyptian Brand</span>
+    <span class="marquee-item"><em>✦</em> Free Delivery Over 500 EGP</span>
+    <span class="marquee-item"><em>✦</em> New Arrivals Every Week</span>
+    <span class="marquee-item"><em>✦</em> Cash on Delivery Available</span>
+    <span class="marquee-item"><em>✦</em> Easy 14-Day Returns</span>
+    <span class="marquee-item"><em>✦</em> Hijab-Friendly Collections</span>
+    <span class="marquee-item"><em>✦</em> Order via WhatsApp</span>
+    <span class="marquee-item"><em>✦</em> Proudly Egyptian Brand</span>
+  </div>
+</div>
+
+<!-- =================== CATEGORIES =================== -->
+<section class="section bg-off" id="categories">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Browse By Category</div>
+      <h2 class="section-title">Shop Our Collections</h2>
+      <p class="section-sub">Find exactly what you're looking for across our curated range</p>
+    </div>
+    <div class="cats-grid">
+      <div class="cat-card" onclick="filterByCategory('dresses')">
+        <img src="./assest/download (2).jfif" alt="Dresses">
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><div class="cat-name">Dresses</div><div class="cat-count">8 styles</div></div>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('tops')">
+        <img src="./assest/download (8).jfif" alt="Tops">
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><div class="cat-name">Tops</div><div class="cat-count">6 styles</div></div>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('sets')">
+        <img src="./assest/download (4).jfif" alt="Co-ord Sets">
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><div class="cat-name">Co-ord Sets</div><div class="cat-count">5 styles</div></div>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('hijab')">
+        <img src="./assest/download (1).jfif" alt="Hijab Friendly">
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><div class="cat-name">Hijab-Friendly</div><div class="cat-count">5 styles</div></div>
+      </div>
+      <div class="cat-card" onclick="filterByCategory('outerwear')">
+        <img src="./assest/Sweetra Damen Große Größen Mantel mit Kunstpelzkragen, Patchwork Taille, aus Wolle _ SHEIN.jfif" alt="Outerwear">
+        <div class="cat-overlay"></div>
+        <div class="cat-info"><div class="cat-name">Outerwear</div><div class="cat-count">4 styles</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== SHOP =================== -->
+<div class="shop-controls" id="shop">
+  <div class="container">
+    <div class="controls-inner">
+      <div class="filter-tabs" id="filter-tabs">
+        <button class="filter-tab active" onclick="setFilter('all', this)">All</button>
+        <button class="filter-tab" onclick="setFilter('dresses', this)">Dresses</button>
+        <button class="filter-tab" onclick="setFilter('tops', this)">Tops</button>
+        <button class="filter-tab" onclick="setFilter('sets', this)">Sets</button>
+        <button class="filter-tab" onclick="setFilter('hijab', this)">Hijab</button>
+        <button class="filter-tab" onclick="setFilter('outerwear', this)">Outerwear</button>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+        <span class="results-count" id="results-count"></span>
+        <select class="sort-select" id="sort-select" onchange="handleSort(this.value)">
+          <option value="default">Sort: Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="newest">Newest First</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="product-grid" id="product-grid"></div>
+  </div>
+</section>
+
+<!-- =================== GUARANTEES =================== -->
+<div class="guarantees">
+  <div class="container">
+    <div class="guar-grid">
+      <div class="guar-item">
+        <div class="guar-icon">🚚</div>
+        <div><div class="guar-title">Fast Delivery</div><div class="guar-sub">2–5 business days nationwide</div></div>
+      </div>
+      <div class="guar-item">
+        <div class="guar-icon">💵</div>
+        <div><div class="guar-title">Cash on Delivery</div><div class="guar-sub">Pay when you receive</div></div>
+      </div>
+      <div class="guar-item">
+        <div class="guar-icon">🔄</div>
+        <div><div class="guar-title">Easy Returns</div><div class="guar-sub">14-day hassle-free returns</div></div>
+      </div>
+      <div class="guar-item">
+        <div class="guar-icon">💬</div>
+        <div><div class="guar-title">WhatsApp Support</div><div class="guar-sub">Always here to help you</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== STATS =================== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div><div class="stat-num">5,000+</div><div class="stat-lbl">Happy Customers</div></div>
+      <div><div class="stat-num">30+</div><div class="stat-lbl">Fashion Styles</div></div>
+      <div><div class="stat-num">149 EGP</div><div class="stat-lbl">Starting From</div></div>
+      <div><div class="stat-num">27</div><div class="stat-lbl">Governorates</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== TESTIMONIALS =================== -->
+<section class="section bg-off" id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Customer Love</div>
+      <h2 class="section-title">Real Reviews, Real Women</h2>
+      <p class="section-sub">Thousands of Egyptian women trust Lumière for their everyday style</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Lumière completely transformed my wardrobe! The quality for the price is honestly unbelievable. I get compliments every time I wear something from here."</p>
+        <div class="test-author"><div class="test-avatar">👩🏻</div><div><div class="test-name">Nour Ahmed</div><div class="test-loc">Cairo, Egypt</div></div></div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Finally an Egyptian brand that truly understands what young women want. The hijab-friendly collection is an absolute dream — modest yet so chic!"</p>
+        <div class="test-author"><div class="test-avatar">🧕</div><div><div class="test-name">Fatima Hassan</div><div class="test-loc">Alexandria, Egypt</div></div></div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Delivery was so fast and the packaging was beautiful — felt like receiving a gift! The linen co-ord set is my summer obsession. Already reordered twice!"</p>
+        <div class="test-author"><div class="test-avatar">👩🏽</div><div><div class="test-name">Sara Mostafa</div><div class="test-loc">Giza, Egypt</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== INSTAGRAM GRID =================== -->
+<section class="section" style="padding-bottom: 0;">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-label">Follow @lumiere.eg</div>
+      <h2 class="section-title">As Seen on Instagram</h2>
+      <p class="section-sub">Share your look with #ShineLumiere</p>
+    </div>
+    <div class="ig-grid">
+      <div class="ig-item"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=300&q=80" alt="ig"><div class="ig-overlay"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+      <div class="ig-item"><img src="https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=300&q=80" alt="ig"><div class="ig-overlay"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+      <div class="ig-item"><img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=300&q=80" alt="ig"><div class="ig-overlay"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+      <div class="ig-item"><img src="./assest/sh3.jpg" alt="ig"><div class="ig-overlay"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+      <div class="ig-item"><img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=300&q=80" alt="ig"><div class="ig-overlay"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+      <div class="ig-item"><img src="https://images.unsplash.com/photo-1550614000-4895a10e1bfd?auto=format&fit=crop&w=300&q=80" alt="ig"><div class="ig-overlay"><svg width="22" height="22" fill="white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div></div>
+    </div>
+    <div class="text-center mt-40"><a href="https://instagram.com" class="btn btn-outline" target="_blank">Follow @lumiere.eg</a></div>
+  </div>
+</section>
+
+<!-- =================== NEWSLETTER =================== -->
+<div class="newsletter">
+  <div class="container">
+    <div class="section-label">Stay in the Loop</div>
+    <h2>Join the Lumière Community</h2>
+    <p>Be first to know about new arrivals, exclusive deals & style tips</p>
+    <div class="nl-form">
+      <input type="email" class="nl-input" id="nl-email" placeholder="Enter your email address...">
+      <button class="btn btn-gold" onclick="handleNewsletter()">Subscribe</button>
+    </div>
+  </div>
+</div>
+
+<!-- =================== FOOTER =================== -->
+<footer id="contact">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo-text">Lumi<span>ère</span></span>
+        <p class="footer-tagline">Trendy, affordable women's fashion for the modern Egyptian woman. Style shouldn't have a price tag.<br><br>أزياء عصرية بأسعار مناسبة 🇪🇬</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" title="Instagram">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" class="social-link" title="Facebook">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://wa.me/201000000000" class="social-link" title="WhatsApp" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.553 4.122 1.522 5.862L0 24l6.278-1.498A11.967 11.967 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.572-.49-5.061-1.342L2.5 21.5l.872-4.355A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#shop">All Products</a></li>
+          <li><a href="#" onclick="filterByCategory('dresses')">Dresses</a></li>
+          <li><a href="#" onclick="filterByCategory('tops')">Tops</a></li>
+          <li><a href="#" onclick="filterByCategory('sets')">Co-ord Sets</a></li>
+          <li><a href="#" onclick="filterByCategory('hijab')">Hijab-Friendly</a></li>
+          <li><a href="#" onclick="filterByCategory('outerwear')">Outerwear</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Track Order</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@lumiere.eg">hello@lumiere.eg</a></li>
+          <li><a href="tel:+201109185143">+20 110 918 5143</a></li>
+          <li><a href="#">Cairo, Egypt 🇪🇬</a></li>
+          <li><a href="https://wa.me/201000000000" target="_blank">WhatsApp Us</a></li>
+        </ul>
+        <p style="color:rgba(255,255,255,0.35);font-size:0.76rem;margin-top:14px">Sat–Thu: 10am – 10pm<br>Fri: 2pm – 10pm</p>
+      </div>
+    </div>
+    <div class="divider" style="background:rgba(255,255,255,0.1)"></div>
+    <div class="footer-bottom" style="margin-top:24px">
+      <p>© 2024 Lumière Fashion. All rights reserved. | صُنع بـ ❤️ في مصر</p>
+      <div class="payment-methods">
+        <span class="payment-method">Cash on Delivery</span>
+        <span class="payment-method">Vodafone Cash</span>
+        <span class="payment-method">Instapay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- =================== CART DRAWER =================== -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-head">
+    <h3>Shopping Bag (<span id="cart-count-head">0</span>)</h3>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cart-body"></div>
+  <div class="cart-foot" id="cart-foot" style="display:none">
+    <div class="cart-total-row"><span>Subtotal</span><span id="cart-subtotal">0 EGP</span></div>
+    <div class="cart-total-row"><span>Delivery</span><span style="color:var(--gold)" id="cart-delivery">FREE</span></div>
+    <div class="cart-grand"><span>Total</span><span id="cart-total-amt">0 EGP</span></div>
+    <button class="wa-btn" onclick="orderViaWhatsApp()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.553 4.122 1.522 5.862L0 24l6.278-1.498A11.967 11.967 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.572-.49-5.061-1.342L2.5 21.5l.872-4.355A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Order via WhatsApp
+    </button>
+    <button class="checkout-btn" onclick="openCheckout()">
+      Proceed to Checkout →
+    </button>
+  </div>
+</div>
+
+<!-- =================== CHECKOUT MODAL =================== -->
+<div class="modal-ov" id="checkout-modal">
+  <div class="modal" id="checkout-modal-content">
+    <div class="modal-head">
+      <h2>Complete Your Order</h2>
+      <button class="close-btn" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <h4>Contact Information</h4>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First Name *</label><input class="form-input" id="f-fname" placeholder="Sara" type="text"></div>
+          <div class="form-group"><label class="form-label">Last Name *</label><input class="form-input" id="f-lname" placeholder="Hassan" type="text"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" id="f-phone" placeholder="+20 1XX XXX XXXX" type="tel"></div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="f-email" placeholder="your@email.com" type="email"></div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <h4>Delivery Address</h4>
+        <div class="form-group"><label class="form-label">Governorate *</label>
+          <select class="form-input" id="f-gov">
+            <option value="">Select Governorate...</option>
+            <option>Cairo — القاهرة</option><option>Giza — الجيزة</option><option>Alexandria — الإسكندرية</option>
+            <option>Dakahlia — الدقهلية</option><option>Sharqia — الشرقية</option><option>Qalyubia — القليوبية</option>
+            <option>Gharbia — الغربية</option><option>Menofia — المنوفية</option><option>Beheira — البحيرة</option>
+            <option>Ismailia — الإسماعيلية</option><option>Port Said — بورسعيد</option><option>Suez — السويس</option>
+            <option>Luxor — الأقصر</option><option>Aswan — أسوان</option><option>Asyut — أسيوط</option>
+            <option>Sohag — سوهاج</option><option>Qena — قنا</option><option>Minya — المنيا</option>
+            <option>Beni Suef — بني سويف</option><option>Fayoum — الفيوم</option><option>Kafr El-Sheikh — كفر الشيخ</option>
+            <option>Damietta — دمياط</option><option>Matruh — مطروح</option><option>North Sinai — شمال سيناء</option>
+            <option>South Sinai — جنوب سيناء</option><option>Red Sea — البحر الأحمر</option><option>New Valley — الوادي الجديد</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">City / District *</label><input class="form-input" id="f-city" placeholder="Nasr City, Maadi..." type="text"></div>
+          <div class="form-group"><label class="form-label">Street & Building *</label><input class="form-input" id="f-street" placeholder="Street, building no." type="text"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Apartment / Floor</label><input class="form-input" id="f-apt" placeholder="e.g. 3rd Floor, Apt 12" type="text"></div>
+        <div class="form-group"><label class="form-label">Delivery Notes</label><textarea class="form-input" id="f-notes" rows="2" placeholder="Special instructions..." style="resize:vertical"></textarea></div>
+      </div>
+      <div class="modal-section">
+        <h4>Payment Method</h4>
+        <div class="cod-info">
+          <div class="cod-icon">💵</div>
+          <div class="cod-text"><strong>Cash on Delivery — الدفع عند الاستلام</strong><span>Pay when the delivery agent arrives at your door</span></div>
+        </div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <label style="display:flex;align-items:center;gap:7px;font-size:0.88rem;cursor:pointer;"><input type="radio" name="payment" value="cod" checked> Cash on Delivery</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:0.88rem;cursor:pointer;"><input type="radio" name="payment" value="vodafone"> Vodafone Cash</label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:0.88rem;cursor:pointer;"><input type="radio" name="payment" value="instapay"> Instapay</label>
+        </div>
+      </div>
+      <div class="modal-section">
+        <h4>Order Summary</h4>
+        <div id="checkout-items"></div>
+        <div class="order-total-row">
+          <span>Total</span><span id="checkout-total" style="color:var(--gold)"></span>
+        </div>
+      </div>
+      <button class="btn btn-gold btn-full" style="margin-top:8px;padding:16px;" onclick="placeOrder()">
+        🛍️ Place My Order
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal-ov" id="success-modal">
+  <div class="modal" style="max-width:440px;">
+    <div class="success-modal">
+      <div class="success-icon">🎉</div>
+      <h2>Order Placed!</h2>
+      <p>شكراً لك! Your order has been confirmed. Our team will call you within <strong>24 hours</strong> to arrange delivery.</p>
+      <div class="order-id" id="success-order-id"></div>
+      <button class="btn btn-dark" onclick="closeSuccessModal()">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- WhatsApp Float Button -->
+<a href="https://wa.me/201000000000" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.553 4.122 1.522 5.862L0 24l6.278-1.498A11.967 11.967 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.846 0-3.572-.49-5.061-1.342L2.5 21.5l.872-4.355A9.965 9.965 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+// ============================================================
+// PRODUCTS DATABASE (28 products)
+// ============================================================
+var PRODUCTS = [
+  // DRESSES
+  { id:1, name:"Floral Wrap Midi Dress", cat:"dresses", price:249, orig:399, img:"./assest/download (12).jfif", desc:"Lightweight floral wrap dress that flatters every body type.", badge:"Sale", isNew:false, hot:true, sizes:["XS","S","M","L","XL","2XL"] },
+  { id:2, name:"Classic Black Midi Dress", cat:"dresses", price:299, orig:null, img:"./assest/download (13).jfif", desc:"The ultimate wardrobe staple. Timeless and versatile.", badge:null, isNew:true, hot:true, sizes:["XS","S","M","L","XL","2XL","3XL"] },
+  { id:3, name:"White Linen Summer Dress", cat:"dresses", price:219, orig:320, img:"./assest/download (14).jfif", desc:"Breathable linen dress perfect for hot Egyptian summers.", badge:"Sale", isNew:false, hot:false, sizes:["XS","S","M","L","XL"] },
+  { id:4, name:"Satin Slip Evening Dress", cat:"dresses", price:399, orig:599, img:"./assest/download (15).jfif", desc:"Elegant satin slip dress for special occasions.", badge:"Sale", isNew:false, hot:true, sizes:["XS","S","M","L","XL"] },
+  { id:5, name:"Casual Linen Shirt Dress", cat:"dresses", price:199, orig:null, img:"./assest/download (16).jfif", desc:"Relaxed shirt dress for everyday wear.", badge:null, isNew:false, hot:false, sizes:["S","M","L","XL","2XL"] },
+  { id:6, name:"Elegant Maxi Dress", cat:"dresses", price:499, orig:750, img:"./assest/download (14).jfif", desc:"Floor-length maxi dress for dinner and celebrations.", badge:"Sale", isNew:true, hot:true, sizes:["XS","S","M","L","XL","2XL"] },
+  { id:7, name:"Striped Knit Mini Dress", cat:"dresses", price:229, orig:null, img:"./assest/download (16).jfif", desc:"Trendy knit mini dress — pair with sneakers or heels.", badge:null, isNew:true, hot:true, sizes:["XS","S","M","L","XL"] },
+  { id:8, name:"Boho Printed Maxi Dress", cat:"dresses", price:279, orig:420, img:"./assest/d2.jpg", desc:"Flowing boho dress with beautiful print.", badge:"Sale", isNew:false, hot:false, sizes:["S","M","L","XL","2XL"] },
+  // TOPS
+  { id:9, name:"Premium White Tee", cat:"tops", price:149, orig:null, img:"./assest/download (7).jfif", desc:"The perfect white t-shirt — soft, structured, essential.", badge:null, isNew:false, hot:false, sizes:["XS","S","M","L","XL","2XL","3XL"] },
+  { id:10, name:"Ribbed Crop Tank Top", cat:"tops", price:149, orig:199, img:"./assest/download (5).jfif", desc:"Versatile ribbed crop top for every occasion.", badge:"Sale", isNew:false, hot:false, sizes:["XS","S","M","L","XL"] },
+  { id:11, name:"Oversized Graphic Hoodie", cat:"tops", price:259, orig:null, img:"./assest/download (8).jfif", desc:"Cozy oversized hoodie for lazy days and casual outings.", badge:null, isNew:true, hot:true, sizes:["XS","S","M","L","XL","2XL"] },
+  { id:12, name:"French Terry Sweatshirt", cat:"tops", price:239, orig:null, img:"./assest/download (11).jfif", desc:"Effortlessly cool sweatshirt with dropped shoulders.", badge:null, isNew:false, hot:false, sizes:["XS","S","M","L","XL","2XL"] },
+  { id:13, name:"Satin Button Blouse", cat:"tops", price:189, orig:270, img:"./assest/download (10).jfif", desc:"Elegant satin blouse, perfect for work or evenings.", badge:"Sale", isNew:false, hot:true, sizes:["XS","S","M","L","XL"] },
+  { id:14, name:"Off-Shoulder Knit Top", cat:"tops", price:179, orig:null, img:"./assest/download (14).jfif", desc:"Chic off-shoulder knit top — effortlessly stylish.", badge:null, isNew:true, hot:false, sizes:["XS","S","M","L","XL"] },
+  // SETS
+  { id:15, name:"Linen Co-ord Set", cat:"sets", price:399, orig:599, img:"./assest/download (4).jfif", desc:"Relaxed blazer-style top and wide-leg trouser set.", badge:"Sale", isNew:false, hot:true, sizes:["XS","S","M","L","XL","2XL"] },
+  { id:16, name:"Knit Two-Piece Set", cat:"sets", price:449, orig:null, img:"./assest/download (5).jfif", desc:"Ribbed knit oversized top with matching midi skirt.", badge:null, isNew:true, hot:true, sizes:["XS","S","M","L","XL"] },
+  { id:17, name:"Blazer & Trouser Set", cat:"sets", price:599, orig:899, img:"./assest/download (6).jfif", desc:"Power dressing made affordable. Look polished every day.", badge:"Sale", isNew:false, hot:true, sizes:["XS","S","M","L","XL","2XL"] },
+  { id:18, name:"Sporty Lounge Set", cat:"sets", price:329, orig:null, img:"./assest/download (1).jfif", desc:"Comfortable lounge set for workouts and errands.", badge:null, isNew:false, hot:false, sizes:["XS","S","M","L","XL","2XL"] },
+  { id:19, name:"Floral Matching Set", cat:"sets", price:379, orig:520, img:"./assest/PRETTYGARDEN Women's Summer 2 Piece Knit Loungewear Short Sleeve T Shirts Wide Leg Pants Tracksuit Casual Outfits.jfif", desc:"Crop top and midi skirt set — vacation-ready.", badge:"Sale", isNew:true, hot:true, sizes:["XS","S","M","L","XL"] },
+  // HIJAB
+  { id:20, name:"Modest Flared Maxi Dress", cat:"hijab", price:349, orig:499, img:"./assest/download (1).jfif", desc:"Full coverage, beautiful and stylish modest maxi dress.", badge:"Sale", isNew:false, hot:true, sizes:["S","M","L","XL","2XL","3XL"] },
+  { id:21, name:"Long Sleeve Elegant Blouse", cat:"hijab", price:219, orig:null, img:"./assest/hj1.JPG", desc:"Flowy long-sleeve blouse for modest, elegant styling.", badge:null, isNew:false, hot:false, sizes:["XS","S","M","L","XL","2XL"] },
+  { id:22, name:"Wide-Leg Culotte Trousers", cat:"hijab", price:299, orig:420, img:"./assest/hj2.jpg", desc:"High-waist wide-leg trousers for chic modest looks.", badge:"Sale", isNew:false, hot:false, sizes:["S","M","L","XL","2XL"] },
+  { id:23, name:"Chiffon Kimono Cardigan", cat:"hijab", price:279, orig:null, img:"./assest/sh2.jpg", desc:"Open-front chiffon kimono for layering with any outfit.", badge:null, isNew:false, hot:false, sizes:["One Size","S/M","L/XL","2XL/3XL"] },
+  { id:24, name:"Modest Linen Jumpsuit", cat:"hijab", price:429, orig:620, img:"./assest/Modest Muslim Women Cotton Top _ Oversized Loose Fit Tunic Blouse _ Hijab Friendly Long Sleeve Shirt _ Islamic Modest Clothing.jfif", desc:"Full-coverage linen jumpsuit — one piece, complete look.", badge:"Sale", isNew:true, hot:true, sizes:["XS","S","M","L","XL","2XL"] },
+  // OUTERWEAR
+  { id:25, name:"Structured Power Blazer", cat:"outerwear", price:499, orig:750, img:"./assest/Sweetra Damen Große Größen Mantel mit Kunstpelzkragen, Patchwork Taille, aus Wolle _ SHEIN.jfif", desc:"Boxy blazer with padded shoulders for effortless power dressing.", badge:"Sale", isNew:false, hot:true, sizes:["XS","S","M","L","XL","2XL"] },
+  { id:26, name:"Classic Trench Coat", cat:"outerwear", price:799, orig:1200, img:"./assest/Sweetra Plus Size Women Faux Fur Collar Patchwork Waist Woolen Coat.jfif", desc:"A timeless investment piece that elevates any outfit.", badge:"Sale", isNew:false, hot:true, sizes:["XS","S","M","L","XL"] },
+  { id:27, name:"Washed Denim Jacket", cat:"outerwear", price:449, orig:null, img:"./assest/download.jfif", desc:"Vintage-finish denim jacket — the ultimate layering piece.", badge:null, isNew:true, hot:false, sizes:["XS","S","M","L","XL","2XL"] },
+  { id:28, name:"Cozy Oversized Cardigan", cat:"outerwear", price:399, orig:580, img:"./assest/sh1.jpg", desc:"Chunky knit cardigan with deep pockets for cooler days.", badge:"Sale", isNew:false, hot:false, sizes:["S/M","L/XL","2XL/3XL"] }
+];
+
+// ============================================================
+// STATE
+// ============================================================
+var cart = JSON.parse(localStorage.getItem('lumiere_cart') || '[]');
+var activeFilter = 'all';
+var activeSort = 'default';
+var searchQuery = '';
+
+// ============================================================
+// CART FUNCTIONS
+// ============================================================
+function saveCart() {
+  localStorage.setItem('lumiere_cart', JSON.stringify(cart));
+  updateCartBadge();
+  renderCartDrawer();
+}
+
+function addToCart(productId) {
+  var product = PRODUCTS.find(function(p) { return p.id === productId; });
+  if (!product) return;
+  var existing = cart.find(function(i) { return i.id === productId; });
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ id: product.id, name: product.name, price: product.price, img: product.img, qty: 1, size: product.sizes[0] });
+  }
+  saveCart();
+  showToast('✨ ' + product.name + ' added to bag!');
+  openCart();
+}
+
+function removeFromCart(productId) {
+  cart = cart.filter(function(i) { return i.id !== productId; });
+  saveCart();
+}
+
+function updateQty(productId, delta) {
+  var item = cart.find(function(i) { return i.id === productId; });
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) {
+    removeFromCart(productId);
+    return;
+  }
+  saveCart();
+}
+
+function getCartTotal() {
+  return cart.reduce(function(sum, i) { return sum + i.price * i.qty; }, 0);
+}
+
+function getCartCount() {
+  return cart.reduce(function(sum, i) { return sum + i.qty; }, 0);
+}
+
+function updateCartBadge() {
+  var count = getCartCount();
+  var badge = document.getElementById('cart-badge');
+  var countHead = document.getElementById('cart-count-head');
+  if (badge) {
+    badge.textContent = count;
+    badge.style.display = count > 0 ? 'flex' : 'none';
+  }
+  if (countHead) countHead.textContent = count;
+}
+
+function renderCartDrawer() {
+  var body = document.getElementById('cart-body');
+  var foot = document.getElementById('cart-foot');
+  if (!body) return;
+
+  if (cart.length === 0) {
+    body.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon">🛍️</div><h4>Your bag is empty</h4><p>Add some items to get started!</p><a href="#shop" class="btn btn-dark btn-sm" onclick="closeCart()">Shop Now</a></div>';
+    if (foot) foot.style.display = 'none';
+    return;
+  }
+
+  var html = '';
+  cart.forEach(function(item) {
+    html += '<div class="cart-item">';
+    html += '<div class="ci-img"><img src="' + item.img + '" alt="' + item.name + '" onerror="this.src=\'https://via.placeholder.com/82x100/f8f7f5/999?text=Image\'"></div>';
+    html += '<div class="ci-info">';
+    html += '<div class="ci-name">' + item.name + '</div>';
+    html += '<div class="ci-size">Size: ' + item.size + '</div>';
+    html += '<div class="ci-price">' + (item.price * item.qty).toLocaleString() + ' EGP</div>';
+    html += '<div class="qty-row">';
+    html += '<button class="qty-btn" onclick="updateQty(' + item.id + ', -1)">−</button>';
+    html += '<span class="qty-val">' + item.qty + '</span>';
+    html += '<button class="qty-btn" onclick="updateQty(' + item.id + ', 1)">+</button>';
+    html += '</div>';
+    html += '<button class="ci-remove" onclick="removeFromCart(' + item.id + ')">Remove</button>';
+    html += '</div></div>';
+  });
+  body.innerHTML = html;
+
+  var total = getCartTotal();
+  var delivery = total >= 500 ? 0 : 50;
+  if (foot) {
+    foot.style.display = 'block';
+    var subEl = document.getElementById('cart-subtotal');
+    var delEl = document.getElementById('cart-delivery');
+    var totEl = document.getElementById('cart-total-amt');
+    if (subEl) subEl.textContent = total.toLocaleString() + ' EGP';
+    if (delEl) {
+      if (delivery === 0) {
+        delEl.textContent = 'FREE 🎉';
+        delEl.style.color = 'var(--gold)';
+      } else {
+        delEl.textContent = delivery + ' EGP';
+        delEl.style.color = 'var(--black)';
+      }
+    }
+    if (totEl) totEl.textContent = (total + delivery).toLocaleString() + ' EGP';
+  }
+}
+
+// ============================================================
+// CART DRAWER OPEN/CLOSE
+// ============================================================
+function openCart() {
+  document.getElementById('cart-overlay').classList.add('open');
+  document.getElementById('cart-drawer').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCart() {
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ============================================================
+// PRODUCT RENDERING
+// ============================================================
+function getFilteredProducts() {
+  var filtered = PRODUCTS.slice();
+
+  if (activeFilter !== 'all') {
+    filtered = filtered.filter(function(p) { return p.cat === activeFilter; });
+  }
+
+  if (searchQuery.trim()) {
+    var q = searchQuery.toLowerCase().trim();
+    filtered = filtered.filter(function(p) {
+      return p.name.toLowerCase().indexOf(q) !== -1 || p.cat.toLowerCase().indexOf(q) !== -1 || p.desc.toLowerCase().indexOf(q) !== -1;
+    });
+  }
+
+  if (activeSort === 'price-asc') {
+    filtered.sort(function(a, b) { return a.price - b.price; });
+  } else if (activeSort === 'price-desc') {
+    filtered.sort(function(a, b) { return b.price - a.price; });
+  } else if (activeSort === 'newest') {
+    filtered.sort(function(a, b) { return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0); });
+  } else {
+    filtered.sort(function(a, b) { return (b.hot ? 1 : 0) - (a.hot ? 1 : 0); });
+  }
+
+  return filtered;
+}
+
+function renderProducts() {
+  var grid = document.getElementById('product-grid');
+  var countEl = document.getElementById('results-count');
+  if (!grid) return;
+
+  var products = getFilteredProducts();
+
+  if (countEl) {
+    countEl.textContent = products.length + ' product' + (products.length !== 1 ? 's' : '') + ' found';
+  }
+
+  if (products.length === 0) {
+    grid.innerHTML = '<div class="no-results"><h3>No products found</h3><p>Try adjusting your search or filters.</p></div>';
+    return;
+  }
+
+  var html = '';
+  products.forEach(function(p) {
+    var disc = p.orig ? Math.round((1 - p.price / p.orig) * 100) : 0;
+    html += '<div class="product-card">';
+    html += '<div class="pc-img-wrap">';
+    html += '<img src="' + p.img + '" alt="' + p.name + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/400x533/f8f7f5/999?text=' + encodeURIComponent(p.name) + '\'">';
+    html += '<div class="pc-badges">';
+    if (p.badge) html += '<span class="badge badge-sale">' + p.badge + '</span>';
+    if (p.isNew) html += '<span class="badge badge-new">New</span>';
+    if (p.hot && !p.isNew) html += '<span class="badge badge-hot">🔥 Hot</span>';
+    html += '</div>';
+    html += '<div class="pc-actions">';
+    html += '<button class="pc-action-btn" onclick="addToCart(' + p.id + ')" title="Add to bag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>';
+    html += '<button class="pc-action-btn" onclick="showToast(\'❤️ Added to wishlist!\')" title="Wishlist"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>';
+    html += '</div></div>';
+    html += '<div class="pc-info">';
+    html += '<div class="pc-cat">' + p.cat.charAt(0).toUpperCase() + p.cat.slice(1) + '</div>';
+    html += '<div class="pc-name">' + p.name + '</div>';
+    html += '<div class="pc-price-row">';
+    html += '<span class="pc-price">' + p.price.toLocaleString() + ' EGP</span>';
+    if (p.orig) {
+      html += '<span class="pc-orig">' + p.orig.toLocaleString() + ' EGP</span>';
+      html += '<span class="pc-disc">-' + disc + '%</span>';
+    }
+    html += '</div>';
+    html += '<button class="pc-add-btn" onclick="addToCart(' + p.id + ')">';
+    html += '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>';
+    html += 'Add to Bag</button>';
+    html += '</div></div>';
+  });
+
+  grid.innerHTML = html;
+}
+
+// ============================================================
+// FILTERS & SORT
+// ============================================================
+function setFilter(category, el) {
+  activeFilter = category;
+  document.querySelectorAll('.filter-tab').forEach(function(tab) {
+    tab.classList.remove('active');
+  });
+  if (el) el.classList.add('active');
+  renderProducts();
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+}
+
+function filterByCategory(cat) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-tab').forEach(function(tab) {
+    tab.classList.remove('active');
+    if (tab.textContent.trim().toLowerCase() === cat.toLowerCase() || tab.onclick.toString().indexOf("'" + cat + "'") !== -1) {
+      tab.classList.add('active');
+    }
+  });
+  // Update tab active state by checking onclick attribute
+  document.querySelectorAll('.filter-tab').forEach(function(tab) {
+    tab.classList.remove('active');
+  });
+  var tabs = document.querySelectorAll('.filter-tab');
+  tabs.forEach(function(tab) {
+    var onclickStr = tab.getAttribute('onclick') || '';
+    if (onclickStr.indexOf("'" + cat + "'") !== -1) {
+      tab.classList.add('active');
+    }
+  });
+  renderProducts();
+  document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+}
+
+function handleSort(value) {
+  activeSort = value;
+  renderProducts();
+}
+
+function handleSearchInput(value) {
+  searchQuery = value;
+  renderProducts();
+}
+
+// ============================================================
+// CHECKOUT
+// ============================================================
+function openCheckout() {
+  closeCart();
+  var itemsEl = document.getElementById('checkout-items');
+  var totalEl = document.getElementById('checkout-total');
+  if (itemsEl) {
+    var html = '';
+    cart.forEach(function(item) {
+      html += '<div class="order-item-row"><span>' + item.name + ' × ' + item.qty + '</span><span>' + (item.price * item.qty).toLocaleString() + ' EGP</span></div>';
+    });
+    var del = getCartTotal() >= 500 ? 0 : 50;
+    html += '<div class="order-item-row"><span>Delivery</span><span>' + (del === 0 ? 'FREE 🎉' : del + ' EGP') + '</span></div>';
+    itemsEl.innerHTML = html;
+  }
+  if (totalEl) {
+    var del2 = getCartTotal() >= 500 ? 0 : 50;
+    totalEl.textContent = (getCartTotal() + del2).toLocaleString() + ' EGP';
+  }
+  document.getElementById('checkout-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCheckout() {
+  document.getElementById('checkout-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function placeOrder() {
+  var fname = document.getElementById('f-fname').value.trim();
+  var phone = document.getElementById('f-phone').value.trim();
+  var gov = document.getElementById('f-gov').value;
+  var city = document.getElementById('f-city').value.trim();
+  var street = document.getElementById('f-street').value.trim();
+
+  if (!fname || !phone || !gov || !city || !street) {
+    showToast('⚠️ Please fill in all required fields!');
+    return;
+  }
+
+  var orderId = 'LUM-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+  document.getElementById('success-order-id').textContent = 'Order ID: ' + orderId;
+  closeCheckout();
+  document.getElementById('success-modal').classList.add('open');
+  cart = [];
+  saveCart();
+}
+
+function closeSuccessModal() {
+  document.getElementById('success-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ============================================================
+// WHATSAPP ORDER
+// ============================================================
+function orderViaWhatsApp() {
+  if (cart.length === 0) {
+    showToast('⚠️ Your cart is empty!');
+    return;
+  }
+  var phone = '201000000000'; // Replace with actual store phone number
+  var msg = '🛍️ *New Order from Lumière Fashion*\n\n';
+  msg += '*Items:*\n';
+  cart.forEach(function(item) {
+    msg += '• ' + item.name + ' (Size: ' + item.size + ') × ' + item.qty + ' = ' + (item.price * item.qty).toLocaleString() + ' EGP\n';
+  });
+  var del = getCartTotal() >= 500 ? 0 : 50;
+  msg += '\n*Subtotal:* ' + getCartTotal().toLocaleString() + ' EGP';
+  msg += '\n*Delivery:* ' + (del === 0 ? 'FREE' : del + ' EGP');
+  msg += '\n*Total:* ' + (getCartTotal() + del).toLocaleString() + ' EGP';
+  msg += '\n\nPlease send me my delivery address form 🙏';
+  var url = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(msg);
+  window.open(url, '_blank');
+}
+
+// ============================================================
+// TOAST
+// ============================================================
+function showToast(message) {
+  var container = document.getElementById('toast-container');
+  var toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
+  container.appendChild(toast);
+  setTimeout(function() {
+    if (toast.parentNode) toast.parentNode.removeChild(toast);
+  }, 3200);
+}
+
+// ============================================================
+// NEWSLETTER
+// ============================================================
+function handleNewsletter() {
+  var email = document.getElementById('nl-email').value.trim();
+  if (!email || email.indexOf('@') === -1) {
+    showToast('⚠️ Please enter a valid email address!');
+    return;
+  }
+  showToast('🎉 Subscribed! Welcome to Lumière!');
+  document.getElementById('nl-email').value = '';
+}
+
+// ============================================================
+// MOBILE MENU
+// ============================================================
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('open');
+}
+
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+}
+
+// ============================================================
+// NAVBAR SCROLL EFFECT
+// ============================================================
+window.addEventListener('scroll', function() {
+  var navbar = document.getElementById('navbar');
+  if (navbar) {
+    if (window.scrollY > 20) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  }
+});
+
+// Close mobile menu on outside click
+document.addEventListener('click', function(e) {
+  var menu = document.getElementById('mobile-menu');
+  var ham = document.getElementById('hamburger');
+  if (menu && ham && !menu.contains(e.target) && !ham.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+
+// ============================================================
+// ============================================================
+// INIT — multiple safety nets
+// ============================================================
+function initApp() {
+  renderProducts();
+  renderCartDrawer();
+  updateCartBadge();
+}
+
+// Fire immediately if DOM already ready, else wait
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
+
+// Fallback: also fire on window load
+window.addEventListener('load', function() {
+  var grid = document.getElementById('product-grid');
+  if (grid && grid.innerHTML.trim() === '') {
+    initApp();
+  }
+});
+
+function openAuthModal(){
+  document.getElementById("auth-modal").classList.add("open");
+}
+
+function closeAuthModal(){
+  document.getElementById("auth-modal").classList.remove("open");
+}
+
+function registerUser(){
+  const name = document.getElementById("user-name").value;
+  const email = document.getElementById("user-email").value;
+  const pass = document.getElementById("user-pass").value;
+
+  if(!name || !email || !pass){
+    alert("Fill all fields");
+    return;
+  }
+
+  const user = {
+    name,
+    email,
+    discount: "LUMI10"
+  };
+
+  localStorage.setItem("user", JSON.stringify(user));
+
+  alert("Account created! Your discount code: LUMI10");
+
+  closeAuthModal();
+}
+
+window.onload = function(){
+  const user = JSON.parse(localStorage.getItem("user"));
+  if(user){
+    document.querySelector('.nav-btn[title="Account"]').innerText = "👋 " + user.name;
+  }
+} 
+
+function loginWithInstagram(){
+  // غير هذا الرابط إلى حسابك
+  const instaLink = "http://localhost:6969/";
+
+  window.open(instaLink, "_blank");
+
+  alert("Message us on Instagram to get your discount code");
+} 
+</script>
+<div class="modal-ov" id="auth-modal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Create Account</h2>
+      <button class="close-btn" onclick="closeAuthModal()">×</button>
+    </div>
+
+    <div class="modal-body">
+      <div style="margin-bottom:15px;">
+  <button class="btn btn-outline" onclick="loginWithInstagram()" style="width:100%;">
+    📸 Continue with Instagram
+  </button>
+</div>
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <input type="text" id="user-name" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" id="user-email" class="form-input">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" id="user-pass" class="form-input">
+      </div>
+
+      <button class="btn btn-gold btn-full" onclick="registerUser()">
+        Create Account & Get Discount
+      </button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
